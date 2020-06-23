@@ -389,7 +389,7 @@ class DenseNNRegression(object):
 
         #Fit model (and set fitting parameters)
         model.compile(loss='mse',optimizer='adam',metrics=['accuracy']) #Set loss function and optimizer
-        model.fit(X_flat_train,y_train,nb_epoch=self.num_epochs,verbose=self.verbose) #Fit the model
+        model.fit(X_flat_train,y_train,epochs=self.num_epochs,verbose=self.verbose) #Fit the model
         self.model=model
 
 
