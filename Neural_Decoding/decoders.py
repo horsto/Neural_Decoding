@@ -988,7 +988,7 @@ class NaiveBayesRegression(object):
                 fac = math.factorial(r)
                 # Guard against memory overlow with too large ints
                 if fac >= sys.float_info.max:
-                    fac = math.inf
+                    fac = sys.float_info.max
                 probs=np.exp(-lam)*lam**r/fac #Probability of the given neuron's spike count given tuning curve (assuming poisson distribution)
                 probs_total=np.copy(probs_total*probs) #Update the probability across neurons (probabilities are multiplied across neurons due to the independence assumption)
             prob_dists_vec=np.copy(prob_dists[loc_idx,:]) #Probability of going to all states from the previous state
