@@ -1,6 +1,7 @@
 ############### IMPORT PACKAGES ##################
 
 import numpy as np
+import sys
 from numpy.linalg import inv as inv #Used in kalman filter
 
 #Used for naive bayes decoder
@@ -983,7 +984,12 @@ class NaiveBayesRegression(object):
             for j in range(num_nrns): #Loop across neurons
                 lam=np.copy(tuning_all[j,:]) #Expected spike counts given the tuning curve
                 r=rs[j] #Actual spike count
-                probs=np.exp(-lam)*lam**r/math.factorial(r) #Probability of the given neuron's spike count given tuning curve (assuming poisson distribution)
+
+                fac = math.factorial(r)
+                # Guard against memory overlow with too large ints
+                if fac >= sys.float_info.max:
+                    fac = math.inf
+                probs=np.exp(-lam)*lam**r/fac #Probability of the given neuron's spike count given tuning curve (assuming poisson distribution)
                 probs_total=np.copy(probs_total*probs) #Update the probability across neurons (probabilities are multiplied across neurons due to the independence assumption)
             prob_dists_vec=np.copy(prob_dists[loc_idx,:]) #Probability of going to all states from the previous state
             probs_final=probs_total*prob_dists_vec #Get final probability (multiply probabilities based on spike count and previous state)
