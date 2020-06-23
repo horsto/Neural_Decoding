@@ -461,7 +461,7 @@ class SimpleRNNRegression(object):
 
         model=Sequential() #Declare model
         #Add recurrent layer
-        model.add(SimpleRNN(self.units,input_shape=(X_train.shape[1],X_train.shape[2]),dropout_W=self.dropout,dropout_U=self.dropout,activation='relu')) #Within recurrent layer, include dropout
+        model.add(SimpleRNN(self.units,input_shape=(X_train.shape[1],X_train.shape[2]),dropout=self.dropout,recurrent_dropout=self.dropout,activation='relu')) #Within recurrent layer, include dropout
         if self.dropout!=0: model.add(Dropout(self.dropout)) #Dropout some units (recurrent layer output units)
 
         #Add dense connections to output layer
@@ -540,7 +540,7 @@ class GRURegression(object):
 
         model=Sequential() #Declare model
         #Add recurrent layer
-        model.add(GRU(self.units,input_shape=(X_train.shape[1],X_train.shape[2]),dropout_W=self.dropout,dropout_U=self.dropout)) #Within recurrent layer, include dropout
+        model.add(GRU(self.units,input_shape=(X_train.shape[1],X_train.shape[2]),dropout=self.dropout,recurrent_dropout=self.dropout)) #Within recurrent layer, include dropout
         if self.dropout!=0: model.add(Dropout(self.dropout)) #Dropout some units (recurrent layer output units)
 
         #Add dense connections to output layer
@@ -619,7 +619,7 @@ class LSTMRegression(object):
 
         model=Sequential() #Declare model
         #Add recurrent layer
-        model.add(LSTM(self.units,input_shape=(X_train.shape[1],X_train.shape[2]),dropout_W=self.dropout,dropout_U=self.dropout)) #Within recurrent layer, include dropout
+        model.add(LSTM(self.units,input_shape=(X_train.shape[1],X_train.shape[2]),dropout=self.dropout,recurrent_dropout=self.dropout)) #Within recurrent layer, include dropout
         if self.dropout!=0: model.add(Dropout(self.dropout)) #Dropout some units (recurrent layer output units)
 
         #Add dense connections to output layer
@@ -1310,7 +1310,7 @@ class SimpleRNNClassification(object):
         #Add recurrent layer
 
         #### MAKE RELU ACTIVATION BELOW LIKE IN REGRESSION????? ####
-        model.add(SimpleRNN(self.units,input_shape=(X_train.shape[1],X_train.shape[2]),dropout_W=self.dropout,dropout_U=self.dropout)) #Within recurrent layer, include dropout
+        model.add(SimpleRNN(self.units,input_shape=(X_train.shape[1],X_train.shape[2]),dropout=self.dropout,recurrent_dropout=self.dropout)) #Within recurrent layer, include dropout
         if self.dropout!=0: model.add(Dropout(self.dropout)) #Dropout some units (recurrent layer output units)
 
         #Add dense connections to output layer
@@ -1402,7 +1402,7 @@ class GRUClassification(object):
 
         model=Sequential() #Declare model
         #Add recurrent layer
-        model.add(GRU(self.units,input_shape=(X_train.shape[1],X_train.shape[2]),dropout_W=self.dropout,dropout_U=self.dropout)) #Within recurrent layer, include dropout
+        model.add(GRU(self.units,input_shape=(X_train.shape[1],X_train.shape[2]),dropout=self.dropout,recurrent_dropout=self.dropout)) #Within recurrent layer, include dropout
         if self.dropout!=0: model.add(Dropout(self.dropout)) #Dropout some units (recurrent layer output units)
 
         #Add dense connections to output layer
@@ -1493,7 +1493,7 @@ class LSTMClassification(object):
 
         model=Sequential() #Declare model
         #Add recurrent layer
-        model.add(LSTM(self.units,input_shape=(X_train.shape[1],X_train.shape[2]),dropout_W=self.dropout,dropout_U=self.dropout)) #Within recurrent layer, include dropout
+        model.add(LSTM(self.units,input_shape=(X_train.shape[1],X_train.shape[2]),dropout=self.dropout,recurrent_dropout=self.dropout)) #Within recurrent layer, include dropout
         if self.dropout!=0: model.add(Dropout(self.dropout)) #Dropout some units (recurrent layer output units)
 
         #Add dense connections to output layer
